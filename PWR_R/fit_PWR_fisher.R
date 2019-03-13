@@ -1,16 +1,17 @@
 library(matlib)
 fit_PWR_fisher = function(x, y, K, p) {
   ##################################################################
-  # Algorithme de fisher de regression par morceaux pour la parametrisation
+  # Algorithme de fisher de regression par morceaux pour la paramétrisation
   # des signaux de manoeuvre d'aiguillages en utilisant la programmation dynamique.
-  # les parametres Ã  estimer sont:
-  # 1. les temps de changement de diffÃ©rents phases du signal
+  # les parametres à estimer sont:
+  
+  # 1. les temps de changement de différentes phases du signal
   #
-  # Une fois la partition estimÃ©e; on calcule les coefficients de regression
-  # associÃ©s a chaque segment ainsi que la variance du bruit sur chaque segment
+  # Une fois la partition estimée, on calcule les coefficients de regression
+  # associés à chaque segment ainsi que la variance du bruit sur chaque segment.
   # 2. les parametres de regression de chaque phase du signal
   # 3. les variances du bruit additif sur chaque phase
-  #  La mÃ©thode d'estimation est le maximum de vraisemblance.
+  #  La méthode d'estimation est le maximum de vraisemblance.
   #
   #
   #
@@ -26,7 +27,7 @@ fit_PWR_fisher = function(x, y, K, p) {
   }
   Lmin = p + 1
   
-  n = length(y) #ok
+  n = length(y) 
   
   #A voir
   # warning off

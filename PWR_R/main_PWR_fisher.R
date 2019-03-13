@@ -64,7 +64,8 @@ source("fit_PWR_fisher.R")
 source("designmatrix.R")
 source("cost_matrix_PPWR.R")
 source("dynamic_prog.R")
-source("show_PWR_results_essai.R")
+source("show_PWR_results.R")
+source("tril.R")
 
 library(R.matlab)
 simulated_time_series = readMat("simulated_time_series.mat")
@@ -86,7 +87,7 @@ cat(sprintf("elapsed time = %1.1f", pwr$stats$cputime), "s")
 #################################################################################
 
 
-show_PWR_results_essai(x, y, pwr)
+show_PWR_results(x, y, pwr)
 
 ## some real time series with regime changes
 
