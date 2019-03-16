@@ -1,9 +1,8 @@
 designmatrix = function(x, p) {
-  ######################################################################
-  # constructs the design matrix of a polynomial regression of degree p
-  #
-  #
-  # Faicel Chamroukhi
+  ###########################################################################
+  # constructs the design matrix of a polynomial regression of degree p     #
+  #                                                                         #
+  # Faicel Chamroukhi                                                       #
   ###########################################################################
   
   if (!is.vector(x)) {

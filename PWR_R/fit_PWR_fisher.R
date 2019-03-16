@@ -25,8 +25,9 @@ fit_PWR_fisher = function(x, y, K, p) {
   if (ncol(x) != 1) {
     x = as.numeric(t(x))
   }
-  Lmin = p + 1
+
   
+  Lmin = p + 1
   n = length(y) 
   
   #A voir
@@ -37,7 +38,6 @@ fit_PWR_fisher = function(x, y, K, p) {
   
   start_time <- Sys.time()
   ### matrice "coÃ»t"
-  
   
   C1 = cost_matrix_PPWR(x, y, p, Lmin) #OK
   
@@ -50,8 +50,8 @@ fit_PWR_fisher = function(x, y, K, p) {
   
   # estimation of the corresponding regression coefficients
   mean_function = matrix(0 , nrow = n , ncol = 1)
-  
-  ##################################################################
+
+    ##################################################################
   #Initialisation
   #Aline CANARD 2/2/2019
   ##################################################################
@@ -59,17 +59,37 @@ fit_PWR_fisher = function(x, y, K, p) {
   sigma2k = c(rep(0,K))
   ##################################################################
   
-  for (k in 1:K) {
-    i = gammak[k] + 1
-    j = gammak[k + 1]
-    nk = j - i + 1
-    yij = y[i:j]
-    X_ij = X[i:j,]
-    betak[,k] = solve(crossprod(X_ij, X_ij)) %*% crossprod(X_ij, yij)
-    z = yij - X_ij %*% betak[,k]
-    sigma2k[k] = crossprod(z, z) / nk            #variances
-    mean_function[i:j,] = X_ij %*% betak[,k]
+
+  
+  if (p==0){
+    for (k in 1:K) {
+      i = gammak[k] + 1
+      j = gammak[k + 1]
+      nk = j - i + 1
+      yij = y[i:j]
+      X_ij = X[i:j,]
+      betak[,k] = solve(crossprod(X_ij, X_ij)) %*% crossprod(X_ij, yij)
+      z = yij - X_ij * betak[,k]
+      sigma2k[k] = crossprod(z, z) / nk            #variances
+      mean_function[i:j,] = X_ij * betak[,k]
+    }
   }
+  else {
+    for (k in 1:K) {
+      i = gammak[k] + 1
+      j = gammak[k + 1]
+      nk = j - i + 1
+      yij = y[i:j]
+      X_ij = X[i:j,]
+      betak[,k] = solve(crossprod(X_ij, X_ij)) %*% crossprod(X_ij, yij)
+      z = yij - X_ij %*% betak[,k]
+      sigma2k[k] = crossprod(z, z) / nk            #variances
+      mean_function[i:j,] = X_ij %*% betak[,k]
+    }
+  }
+    
+
+  
   
   # classes estimees:
   

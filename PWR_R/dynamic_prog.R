@@ -1,5 +1,5 @@
 dynamic_prog = function(matJ, K) {
-  #################################################################################
+  ################################################################################################
   # [J, t_est]= progdyn(matJ,Kmax)
   # dynamic_prog : algorithme de programmation dynamique
   #   matJ(i,j) = sum_{t=i}^{t=j}(xt-mu)^2
@@ -8,7 +8,7 @@ dynamic_prog = function(matJ, K) {
   #
   # ENTREES:
   #
-  #        matJ : matrice cout pour chaque couple (i,j) qui est J_1
+  #        matJ : matrice coût pour chaque couple (i,j) qui est J_1
   #               matJ(i,j) = sum_{t=i}^{t=j}(xt-mu)^2
   #        Kmax : nbre maximal de classes.
   #

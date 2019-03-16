@@ -74,18 +74,11 @@ y = simulated_time_series$y
 
 # model specification
 K = 5# number of segments
-p = 3 # polynomial degree
+p = 0 # polynomial degree
 
 pwr = fit_PWR_fisher(x, y, K, p)
 
 cat(sprintf("elapsed time = %1.1f", pwr$stats$cputime), "s")
-
-#################################################################################
-#################################################################################
-# Progression
-#################################################################################
-#################################################################################
-
 
 show_PWR_results(x, y, pwr)
 
