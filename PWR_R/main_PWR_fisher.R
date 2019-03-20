@@ -48,17 +48,12 @@
 #
 # Faicel Chamroukhi Decembre 2008.
 ##################################################################
+rm(list=ls()) # remove and rm can be used to remove objects
+setwd("D:/Projet Master2 series temp/Project_04022019/Code R")
+
 library(matlib)
 library(matrixcalc)
-
-rm(list=ls()) # remove and rm can be used to remove objects
-
-## toy time series with regime changes
-# y =[randn(100,1); 7+randn(120,1);4+randn(200,1); -2+randn(100,1); 3.5+randn(150,1);]';
-# n = length(y);
-# x = linspace(0,1,n);
-
-setwd("D:/Projet Master2 series temp/Project_04022019/Code R")
+library(R.matlab)
 
 source("fit_PWR_fisher.R")
 source("designmatrix.R")
@@ -67,32 +62,19 @@ source("dynamic_prog.R")
 source("show_PWR_results.R")
 source("tril.R")
 
-library(R.matlab)
+
 simulated_time_series = readMat("simulated_time_series.mat")
 x = simulated_time_series$x
 y = simulated_time_series$y
 
 # model specification
 K = 5# number of segments
-p = 0 # polynomial degree
+p = 3 # polynomial degree
 
 pwr = fit_PWR_fisher(x, y, K, p)
 
 cat(sprintf("elapsed time = %1.1f", pwr$stats$cputime), "s")
 
 show_PWR_results(x, y, pwr)
-
-## some real time series with regime changes
-
-#load real_time_series_1
-#load real_time_series_2
-# 
-# pwr = fit_PWR_fisher(x, y, K, p);
-# 
-# fprintf('elapsed time = #g\n', pwr.stats.cputime);
-# #fprintf('objective value = #f\n',pwr.stats.objective);
-# yaxislim = [240, 600];
-# show_PWR_results(x, y, pwr, yaxislim);
-
 
 
