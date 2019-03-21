@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.3.12)  20 MAR 2019 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.3.12)  20 MAR 2019 21:30
 entering extended mode
-**./PWR2.tex
-(PWR2.tex
+**./PWR.tex
+(PWR.tex
 LaTeX2e <2017-04-15>
 Babel <3.17> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -728,9 +728,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip56
-)
-(PWR2.aux)
-\openout1 = `PWR2.aux'.
+) (PWR.aux)
+\openout1 = `PWR.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 238.
 LaTeX Font Info:    ... okay on input line 238.
@@ -799,9 +798,9 @@ LaTeX Info: Redefining \ref on input line 238.
 LaTeX Info: Redefining \pageref on input line 238.
 LaTeX Info: Redefining \nameref on input line 238.
 
-(PWR2.out) (PWR2.out)
+(PWR.out) (PWR.out)
 \@outlinefile=\write3
-\openout3 = `PWR2.out'.
+\openout3 = `PWR.out'.
 
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 240.
 
@@ -907,60 +906,60 @@ ML/cmm/b/it/12 []\OML/lmm/m/it/12 ; ::; \OML/cmm/b/it/12 []\OT1/lmr/m/n/12 )$
  []
 
 [4 <./SchemaSerieTemp.JPG>] [5]
-<mindmapping.jpg, id=126, 837.88031pt x 109.53423pt>
+<mindmapping.jpg, id=127, 837.88031pt x 109.53423pt>
 File: mindmapping.jpg Graphic file (type jpg)
 <use mindmapping.jpg>
-Package pdftex.def Info: mindmapping.jpg  used on input line 378.
+Package pdftex.def Info: mindmapping.jpg  used on input line 379.
 (pdftex.def)             Requested size: 502.73207pt x 65.72104pt.
 
-Overfull \hbox (32.97708pt too wide) in paragraph at lines 378--379
+Overfull \hbox (32.97708pt too wide) in paragraph at lines 379--380
 [][] 
  []
 
 [6] [7 <./mindmapping.jpg>] [8]
-<segmentation1.jpeg, id=145, 1927.2pt x 1000.73875pt>
+<segmentation1.jpeg, id=146, 1927.2pt x 1000.73875pt>
 File: segmentation1.jpeg Graphic file (type jpg)
 <use segmentation1.jpeg>
-Package pdftex.def Info: segmentation1.jpeg  used on input line 452.
+Package pdftex.def Info: segmentation1.jpeg  used on input line 454.
 (pdftex.def)             Requested size: 481.79883pt x 250.18408pt.
 
-Overfull \hbox (12.04384pt too wide) in paragraph at lines 452--453
+Overfull \hbox (12.04384pt too wide) in paragraph at lines 454--455
  [][] 
  []
 
-<segmentation.jpeg, id=146, 1927.2pt x 1000.73875pt>
+<segmentation.jpeg, id=147, 1927.2pt x 1000.73875pt>
 File: segmentation.jpeg Graphic file (type jpg)
 <use segmentation.jpeg>
-Package pdftex.def Info: segmentation.jpeg  used on input line 458.
+Package pdftex.def Info: segmentation.jpeg  used on input line 460.
 (pdftex.def)             Requested size: 481.79883pt x 250.18408pt.
 
-Overfull \hbox (12.04384pt too wide) in paragraph at lines 458--459
+Overfull \hbox (12.04384pt too wide) in paragraph at lines 460--461
  [][] 
  []
 
-[9 <./segmentation1.jpeg>] [10 <./segmentation.jpeg>] (PWR2.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 472.
+[9 <./segmentation1.jpeg>] [10 <./segmentation.jpeg>] (PWR.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 474.
  [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 472.
- (PWR2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 472.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 472.
-Package rerunfilecheck Info: File `PWR2.out' has not changed.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 474.
+ (PWR.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 474.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 474.
+Package rerunfilecheck Info: File `PWR.out' has not changed.
 (rerunfilecheck)             Checksum: 1CF9A3435771724E2DD459FBD4C0FF6F;1359.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 472.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 474.
  ) 
 Here is how much of TeX's memory you used:
  9817 strings out of 493303
- 140357 string characters out of 3138856
+ 140341 string characters out of 3138856
  240154 words of memory out of 3000000
  13119 multiletter control sequences out of 15000+200000
  90247 words of font info for 99 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,17n,39p,1239b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,17n,39p,1238b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
 nc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit
@@ -979,9 +978,9 @@ ic/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><C
 :/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/public/lm/lmsy8.pfb>
-Output written on PWR2.pdf (11 pages, 1247458 bytes).
+Output written on PWR.pdf (11 pages, 1247815 bytes).
 PDF statistics:
- 236 PDF objects out of 1000 (max. 8388607)
+ 237 PDF objects out of 1000 (max. 8388607)
  45 named destinations out of 1000 (max. 500000)
  146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

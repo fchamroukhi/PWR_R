@@ -287,9 +287,9 @@ Dans une première partie, le modèle sera spécifié, et cela permettra de just
 \label{ssec: def1}
 \smallbreak
 
-Soit ${\bx}= ({\mathcal{X}}_{1},...,{\mathcal{X}}_{n})$, une observation d'une série temporelle où les $x_{i}$ sont observés au temps $t_{i}$. Le modèle de régression polynomiale par morceaux suppose que la série temporelle soit composée de $K$ régimes sur $K$ intervalles dont les indices de bornes peuvent être notés : $\bsgamma=(\gamma_{1},...,\gamma_{K+1})$ avec $\gamma_{1}=0$ et $\gamma_{K+1}=n$. Cela définit une partition de la série temporelle en $K$ segments polynomiaux $({\bx}_{1},...,{\bx}_{K})$, de longueur $n_{1},...,n_{K}$ où ${\bx}_{K}=\{{\bx}_{i}| i\in I_{K}\}$ est l'ensemble des éléments d'un segment $k$ dont les indices sont : $I_{K}=(\bsgamma_{K},\bsgamma_{K+1}]$. Les modèles standards de régression polynomiale sont des modèles homoscédastiques puisqu'ils supposent que les différents modèles de régression polynomiale ont la même de bruit. Dans notre cas, nous considérons le cadre plus général d'un modèle hétéroscédastique; ce qui permet d'avoir une variance de bruit entre les différents modèles de régression polynomiale.On peut le définir ainsi : 
+Soit ${\bx}= ({\mathcal{X}}_{1},...,{\mathcal{X}}_{n})$, une observation d'une série temporelle où les $x_{i}$ sont observés au temps $t_{i}$. Le modèle de régression polynomiale par morceaux suppose que la série temporelle soit composée de $K$ régimes sur $K$ intervalles dont les indices de bornes peuvent être notés : $\bsgamma=(\gamma_{1},...,\gamma_{K+1})$ avec $\gamma_{1}=0$ et $\gamma_{K+1}=n$. Cela définit une partition de la série temporelle en $K$ segments polynomiaux $({\bx}_{1},...,{\bx}_{K})$, de longueur $n_{1},...,n_{K}$ où ${\bx}_{K}=\{{\mathcal{X}}_{i}| i\in I_{K}\}$ est l'ensemble des éléments d'un segment $k$ dont les indices sont : $I_{K}=(\bsgamma_{K},\bsgamma_{K+1}]$. Les modèles standards de régression polynomiale sont des modèles homoscédastiques puisqu'ils supposent que les différents modèles de régression polynomiale ont la même de bruit. Dans notre cas, nous considérons le cadre plus général d'un modèle hétéroscédastique; ce qui permet d'avoir une variance de bruit entre les différents modèles de régression polynomiale.On peut le définir ainsi : 
 \begin{equation}
-\forall{i}=1,..n, {\bx}_{i}=\bsbeta^{T}_{k}\br_{i} + \sigma_{k}\epsilon_{i}; \epsilon_{i}\sim \cN (0,1),
+\forall{i}=1,..n, {\bx}_{i}=\bsbeta^{T}_{k}\br_{i} + \sigma_{k}\epsilon_{i} \, \, ; \,\, \epsilon_{i}\sim \cN (0,1),
 \label{eq:Hyp1}
 \end{equation}
 où $k$ est tel que $i\in I_{k}, \bsbeta_{k}$ est le vecteur des coefficients de la $(p+1)^{eme}$ dimension d'un polynôme de degré $p$ associé au $k^{eme}$ segment, avec $k\in \{1,..,K\}$, 
@@ -324,8 +324,8 @@ ${\bx}_{t}=$
 Avec ce modèle, les paramètres peuvent s'écrire de la forme : $(\bspsi,\bsgamma)$ où  $\bspsi=(\bsbeta_{1},...,\bsbeta_{k},\bssigma^2_{1},..,\bssigma^2_{k})$ est l"ensemble des coefficients polynomiaux et des variances de bruit, et $\bsgamma=(\gamma_{1},...,\gamma_{K+1})$ l'ensemble des points de rupture. L'estimation des paramètres se fera par maximum de vraisemblance. L'indépendance conditionnelle des données est supposée. Ainsi, d'après le modèle défini dans l'équation  (Equation\ref{eq:Hyp1}), on peut montrer que dans chaque segment $k$, ${\bx}_{i}$ a une distribution gaussienne de moyenne $\bsbeta^{T}_{k}\br_{i}$ et de variance $\sigma^2_{k}$ et, par conséquent, que la log-vraisemblance du vecteur paramètre $(\bspsi,\bsgamma)$ caractérisant le modèle de régression polynomiale par morceaux est la somme des log-vraisemblances locales sur les $K$ segments comme suit :
 \begin{equation}
 \begin{split}
- L(\bspsi,\bsgamma,{\bx}) & = \prod_{k=1}^{K}p({\bx}_{k},\bspsi,\bsgamma,{\bx}) \\
-\ln(L(\bspsi,\bsgamma,{\bx})) & = \sum_{k=1}^{K} ln(p({\bx}_{k},\bspsi,\bsgamma,{\bx})) \\
+ L(\bspsi,\bsgamma,{\bx}) & = \prod_{k=1}^{K}p({\bx}_{k},\bspsi,\bsgamma) \\
+\ln(L(\bspsi,\bsgamma,{\bx})) & = \sum_{k=1}^{K} ln(p({\bx}_{k},\bspsi,\bsgamma)) \\
 &                  = \sum_{k=1}^{K} ln( \prod_{t=\gamma_{K}+1}^{\gamma_{K+1}}   \mathcal{N}({\bx}_{t},\bsbeta^{T}_{k}\br_{i},\sigma^2_{k}))\\
 &       			 = \sum_{k=1}^{K} ln( \prod_{t \in I_k}   \mathcal{N}({\bx}_{t},\bsbeta^{T}_{k}\br_{i},\sigma^2_{k}))\\
 &       			 = \sum_{k=1}^{K} \sum_{t \in I_k}  ln(  \mathcal{N}({\bx}_{t},\bsbeta^{T}_{k}\br_{i},\sigma^2_{k}))\\
@@ -341,7 +341,7 @@ J(\bspsi,\bsgamma) =  \sum_{k=1}^{K} \Big[ \frac{1}{\sigma^2_{k}} \sum_{t \in I_
 \label{eq:Hyp3}
 \end{equation}  
 où $n_{k}$ est le nombre d'éléments dans le segment $k$.\\
-Vue la forme de cette log-vraisemblance (en log de somme), il n'est pas possible de trouver une solution analytique. Par contre, comme le critère $J$ est additif sur les $K$ segments, on peut utiliser l'algorithme de Fisher (Fisher, 1958; Lechevallier, 1990), procédé de programmation dynamique (Bellman, 1961 ; Brailovsky et Kempner, 1992) pour réaliser la minimisation globale. Ce procédé dynamique a une complexité en temps en $O(Kp^2n^2)$; ce qui peut être coûteux en temps machine dans le cadre de jeux de données volumineux. 
+Vue la forme de cette log-vraisemblance (en log de somme), il n'est pas possible de trouver une solution analytique. Par contre, comme le critère $J$ est additif sur les $K$ segments, on peut utiliser l'algorithme de Fisher (Fisher, 1958; Lechevallier, 1990), procédé de programmation dynamique (Bellman, 1961 ; Brailovsky et Kempner, 1992) pour réaliser la minimisation globale. Cet algorithme est récursif et alterne entre l'optimisation des $\gamma$ et des $\bsbeta$ et $\bssigma$.  Ce procédé dynamique a une complexité en temps en $O(Kp^2n^2)$; ce qui peut être coûteux en temps machine dans le cadre de jeux de données volumineux. 
 
 \smallbreak
 \subsection{Approximation et segmentation d'une série temporelle par la méthode de régression par morceaux}
@@ -351,7 +351,7 @@ Une fois les paramètres estimés, la segmentation d'une série temporelle, qui 
 $\widehat{\bz}=( \widehat{z}_1,...,\widehat{z}_n)$, où $\widehat{z}_i \in \{1,..K\}$, peut être déduit en posant $\widehat{z}_i = k$ si $i \in (\widehat{\bsgamma}_{K},\widehat{\bsgamma}_{K+1}]$; les paramètres  $(\widehat{\bspsi},\widehat{\bsgamma})$ ayant été obtenus par le procédé de programmation dynamique.
 Puis une approximation de la série temporelle est donnée par $\widehat{{\bx}}_{i}=\sum_{k=1}^{K} \widehat{z}_{ik}\widehat{\bsbeta}^{T}_{k}\br_{i}$ où $\widehat{z}_{ik}=1$ si $\widehat{z}_{i}=k$ et $\widehat{z}_{ik}=0$ sinon. La formulation vectorielle de la série temporelle approchée $\widehat{{\bx}}$ peut s'écrire: 
 \begin{equation}
-\widehat{{\bx}}=\sum_{k=1}^{K} \widehat{\bz}_{k}\widehat{\bsbeta}_{k}
+\widehat{{\bx}}=\sum_{k=1}^{K} \widehat{\bz}_{k}\bT\widehat{\bsbeta}_{k}
 \label{eq:Hyp4}
 \end{equation}  
 où $ \widehat{\bz}_{k}$ est une matrice diagonale dont les éléments diagonaux sont $( \widehat{z}_1,...,\widehat{z}_n)$ et 
@@ -368,7 +368,8 @@ est la matrice de régression de dimension $[n\times(p+1)]$.
 \section{Description de l'algorithmique de segmentation}
 \smallbreak
 Le programme complet de segmentation d'une série temporelle selon le modèle de régression polynomiale par morceaux par la méthode de programmation dynamique a été implémenté en R. La programmation dynamique Le principe de cette méthode consiste à décomposer le problème en sous-problèmes et à établir une relation de récurrence avec les solutions optimales des sous-problème. L'algorithme proposé par Lechevalier en 1990 est basé sur l'approche de Fisher. Le principe est de maximiser dans ce cas la somme des log-vraisemblances des K sous-modèles de régression relatifs aux K classes ou intervalles, qui est un critère additif sur les K intervalles. 
-Le programme en R contient 6 sous-fonction. La manière dont ces fonctions s'imbriquent est présentée via la carte mentale ci-dessous :
+Le programme en R contient 6 fonctions. La manière dont ces fonctions s'imbriquent est présentée via la carte mentale ci-dessous (Fig\ref{fig: mindmapping}):
+\smallbreak
 \smallbreak
 \subsection{Carte mentale de l'ensemble du programme}
 \label{ssec: CM}
@@ -383,7 +384,7 @@ Le programme en R contient 6 sous-fonction. La manière dont ces fonctions s'imb
 \subsection{Description de la fonction : designmatrix }
 \label{ssec: ssprog1}
 \smallbreak
-Cette fonction, permet, à partir d'un vecteur $\br_{i}$ et d'un degré de polynôme $p$, de construire la matrice de régression polynomiale de degré p $\bt$
+Cette fonction, permet, à partir d'un vecteur $\br_{i}$ et d'un degré de polynôme $p$, de construire la matrice de régression polynomiale de degré p :
 $$
 \bT=\begin{pmatrix}
    1 & \bt_{1} & \bt^2_{1} & \cdots & \bt^p_{1} \\
@@ -435,7 +436,7 @@ Une fois la partition estimée par la fonction précédente : $"dynamic\_prog"$,
 \subsection{Description de la fonction : show-PWR-results}
 \label{ssec: ssprog6}
 \smallbreak
-Cette fonction réalise la représentation graphique de la série initiale, de sa segmentation et des droites de régression pour chaque régime. Deux graphiques seront générés par le code, dans des fenêtres externes.
+Cette fonction réalise la représentation graphique de la série initiale, de sa segmentation et des courbes de régression pour chaque régime. Deux graphiques seront générés par le code, dans des fenêtres externes.
 \smallbreak
 \subsection{Description de la fonction : main-PWR-fisher}
 \label{ssec: ssprog7}
@@ -444,7 +445,8 @@ Cette dernière fonction (le programme principal) permet d'appeler les biblioth�
 
 - la première (Fig\ref{fig: segmentation1}) présente la série temporelle initiale, et les polynômes qui l'approchent pour chaque régime. Chacune des courbes des polynômes a sa propre couleur, et la partie correspondant au régime associé est présentée en trait plus épais (en pointillé pour le reste).
 - la seconde  (Fig\ref{fig: segmentation2}) représente la série temporelle initiale, et la segmentation optimale avec en rouge la courbe de régression pour chaque régime.  
-
+\smallbreak
+\smallbreak
 Les figures ci-dessous présentent les sorties du code R pour un exemple de série temporelle.
 \smallbreak
 \begin{figure}[H] 
