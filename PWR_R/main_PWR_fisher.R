@@ -33,23 +33,25 @@
 #  url = {https://chamroukhi.users.lmno.cnrs.fr/papers/chamroukhi_ijcnn2009.pdf}
 # }
 # 
-# @article{Chamroukhi-FDA-2018,
-# 	Journal = {Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery},
-# 	Author = {Faicel Chamroukhi and Hien D. Nguyen},
-# 	Note = {DOI: 10.1002/widm.1298.},
-# 	Volume = {},
-# 	Title = {Model-Based Clustering and Classification of Functional Data},
-# 	Year = {2019},
-# 	Month = {to appear},
-# 	url =  {https://chamroukhi.com/papers/MBCC-FDA.pdf}
-# 	}
+#@article{Chamroukhi-FDA-2018,
+#	Journal = {Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery},
+#	Author = {Faicel Chamroukhi and Hien D. Nguyen},
+#	Note = {DOI: 10.1002/widm.1298.},
+#	Volume = {},
+#	Title = {Model-Based Clustering and Classification of Functional Data},
+#	Year = {2018},
+#	Month = {Dec},
+#	url =  {https://chamroukhi.com/papers/MBCC-FDA.pdf}
+#	}
 #
 #
 #
 # Faicel Chamroukhi Decembre 2008.
 ##################################################################
 rm(list=ls()) # remove and rm can be used to remove objects
-setwd("D:/Projet Master2 series temp/Project_04022019/Code R")
+
+#put your folder directory here
+setwd("....")
 
 library(matlib)
 library(matrixcalc)
