@@ -51,7 +51,7 @@
 rm(list=ls()) # remove and rm can be used to remove objects
 
 #put your folder directory here
-setwd("....")
+#setwd("....")
 
 library(matlib)
 library(matrixcalc)
