@@ -66,4 +66,4 @@ modelPWR <- ModelPWR(fData, K, p)
 
 
 solution <- fitPWRFisher(modelPWR)
-solution$plot()
+#solution$plot()
