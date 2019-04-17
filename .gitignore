@@ -1,5 +1,6 @@
-
-PWR_R/\.Rhistory
+.DS_Store
 .Rproj.user
-
-PWR/\.Rbuildignore
+PWR/.DS_Store
+PWR/.Rbuildignore
+PWR/.Rhistory
+PWR/.Rproj.user/
