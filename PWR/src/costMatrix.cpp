@@ -67,5 +67,4 @@ arma::mat costMatrix(arma::colvec y, arma::mat X, double Lmin = 1) {
 //
 
 /*** R
-# test = suppressMessages(costMatrix(modelPWR$Y, designmatrix(modelPWR$X, p)$XBeta))
 */
