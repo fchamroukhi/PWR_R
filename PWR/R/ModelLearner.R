@@ -1,3 +1,6 @@
+library(Rcpp)
+Rcpp::sourceCpp("src/costMatrix.cpp")
+
 source("R/costMatrixPPWR.R")
 source("R/ParamPWR.R")
 source("R/StatPWR.R")
@@ -9,7 +12,8 @@ fitPWRFisher = function(modelPWR) {
   phi <- designmatrix(modelPWR$X, modelPWR$p)
   Lmin <- modelPWR$p + 1
 
-  C1 <- costMatrixPPWR(modelPWR, phi, Lmin)
+  # C1 <- costMatrixPPWR(modelPWR, phi, Lmin)
+  C1 <- costMatrix(modelPWR$Y, designmatrix(modelPWR$X, p)$XBeta)
 
   paramPWR <- ParamPWR(modelPWR)
   Ck <- paramPWR$computeDynamicProgram(C1, modelPWR$K)

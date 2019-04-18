@@ -48,6 +48,7 @@
 ##################################################################
 
 rm(list = ls())
+
 source("R/FData.R")
 source("R/ModelPWR.R")
 source("R/ModelLearner.R")
@@ -66,4 +67,4 @@ modelPWR <- ModelPWR(fData, K, p)
 
 
 solution <- fitPWRFisher(modelPWR)
-#solution$plot()
+solution$plot()
