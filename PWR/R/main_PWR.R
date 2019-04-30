@@ -54,7 +54,14 @@ source("R/ModelPWR.R")
 source("R/ModelLearner.R")
 
 # Building matrices for regression
+
+# Toy time series with regime changes
 load("data/simulatedTimeSeries.RData")
+
+# Some real time series with regime changes
+load("data/realTimeSeries1.RData")
+# load("data/realTimeSeries2.RData")
+
 fData <- FData$new()
 fData$setData(X, Y)
 
