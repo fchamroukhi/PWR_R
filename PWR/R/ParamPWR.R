@@ -14,7 +14,7 @@ ParamPWR <- setRefClass(
     },
 
     computeParam = function(modelPWR, phi){
-      for (k in 1: modelPWR$K) {
+      for (k in 1:modelPWR$K) {
         i <- gamma[k] + 1
         j <- gamma[k + 1]
         nk <- j - i + 1
@@ -22,7 +22,7 @@ ParamPWR <- setRefClass(
         X_ij <- phi$XBeta[i:j,]
         beta[,k] <<- solve(t(X_ij) %*% X_ij) %*% t(X_ij) %*% yij
 
-        if (modelPWR$p==0){
+        if (modelPWR$p == 0) {
           z <- yij - X_ij * beta[, k]
           sigma[k] <<- t(z) * z / nk            #variances
           #mean_function[i:j,] <- X_ij * betak[,k]

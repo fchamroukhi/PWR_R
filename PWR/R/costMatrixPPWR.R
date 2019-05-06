@@ -13,10 +13,10 @@ costMatrixPPWR = function(modelPWR, phi, Lmin = 1) {
       ############################################################################
       # Condition added to handle the cases (a + 1 + Lmin) > n                   #
       ############################################################################
-      for (b in (a + 1 + Lmin) : modelPWR$m)  {
+      for (b in (a + 1 + Lmin):modelPWR$m) {
         # ici et dans ce qui suit a+1 car en matlab les indices commencent de 1
-        yab <- modelPWR$Y[(a + 1) : b]
-        X_ab <- phi$XBeta[(a + 1) : b, ]
+        yab <- modelPWR$Y[(a + 1):b]
+        X_ab <- phi$XBeta[(a + 1):b, ]
         nk <- b - a
 
         #beta = svd.inverse(crossprod(X_ab, X_ab)) %*% crossprod(X_ab, yab)

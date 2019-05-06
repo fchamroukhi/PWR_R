@@ -21,12 +21,12 @@ StatPWR <- setRefClass(
     },
     computeMeanFunction = function(paramPWR, phi){
       K <- ncol(paramPWR$beta)
-      for (k in 1 : K) {
+      for (k in 1:K) {
         i <- paramPWR$gamma[k] + 1
         j <- paramPWR$gamma[k + 1]
         X_ij <- phi$XBeta[i:j,]
 
-        if (p==0){
+        if (p == 0) {
           mean_function[i:j,] <<- X_ij * paramPWR$beta[,k]
         } else {
           mean_function[i:j,] <<- X_ij %*% paramPWR$beta[,k]

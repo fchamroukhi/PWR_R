@@ -7,7 +7,7 @@ dynamicProg = function(matJ, K) {
   if (K > 2) {
     for (k in 2:(K - 1)) {
       for (L in 2:n) {
-        temp <- I[k - 1, 1 : L - 1] + t(matJ[2:L,L])
+        temp <- I[k - 1, 1:L - 1] + t(matJ[2:L,L])
         I[k,L] <- min(temp)
         t[k - 1,L] <- which.min(temp)
       }
