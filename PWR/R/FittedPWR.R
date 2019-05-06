@@ -8,6 +8,9 @@ FittedPWR <- setRefClass(
   methods = list(
     plot = function() {
 
+      oldpar <- par()[c("mai", "mgp")]
+      on.exit(par(oldpar), add = TRUE)
+
       yaxislim <- c(mean(modelPWR$Y) - 2 * sqrt(var(modelPWR$Y)), mean(modelPWR$Y) + 2 * sqrt(var(modelPWR$Y)))
 
       # Time series, regressors, and segmentation

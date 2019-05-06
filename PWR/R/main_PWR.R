@@ -59,7 +59,7 @@ source("R/ModelLearner.R")
 load("data/simulatedTimeSeries.RData")
 
 # Some real time series with regime changes
-load("data/realTimeSeries1.RData")
+# load("data/realTimeSeries1.RData")
 # load("data/realTimeSeries2.RData")
 
 fData <- FData$new()
