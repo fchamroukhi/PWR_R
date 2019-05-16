@@ -1,6 +1,6 @@
 .DS_Store
 .Rproj.user
-PWR/.DS_Store
-PWR/.Rbuildignore
-PWR/.Rhistory
-PWR/.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+inst/doc

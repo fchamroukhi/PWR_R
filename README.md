@@ -1,13 +1,12 @@
-PWR_r
+PWR
 
 A polynomial piecewise regression model for the optimal segmentation of a
 time series with regime changes. It uses dynamic programming for the segmentation 
 and the LSE for the estimation of the regression parameters.
 
-by Faicel Chamroukhi Decembre 2008.
+*Please cite the following papers for this code:*
 
-% Please cite the following papers for this code:
-
+```
 @article{chamroukhi_et_al_NN2009,
 	Address = {Oxford, UK, UK},
 	Author = {Chamroukhi, F. and Sam\'{e}, A. and Govaert, G. and Aknin, P.},
@@ -44,9 +43,4 @@ by Faicel Chamroukhi Decembre 2008.
 	Month = {to appear},
 	url =  {https://chamroukhi.com/papers/MBCC-FDA.pdf}
 	}
-
-
-
-Faicel Chamroukhi Decembre 2008.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+```

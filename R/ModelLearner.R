@@ -1,11 +1,3 @@
-library(Rcpp)
-Rcpp::sourceCpp("src/costMatrix.cpp")
-
-source("R/costMatrixPPWR.R")
-source("R/ParamPWR.R")
-source("R/StatPWR.R")
-source("R/FittedPWR.R")
-
 fitPWRFisher = function(modelPWR) {
   start_time <- Sys.time()
 

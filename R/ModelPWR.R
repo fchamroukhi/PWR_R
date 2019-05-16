@@ -1,5 +1,3 @@
-source("R/FData.R")
-
 ModelPWR <- setRefClass(
   "ModelPWR",
   contains = "FData",

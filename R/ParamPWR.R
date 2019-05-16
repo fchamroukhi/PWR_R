@@ -1,4 +1,3 @@
-source("R/dynamicProg.R")
 ParamPWR <- setRefClass(
   "ParamPWR",
   fields = list(gamma = "matrix",

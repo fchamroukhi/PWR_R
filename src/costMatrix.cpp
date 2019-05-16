@@ -15,7 +15,7 @@ using namespace Rcpp;
 //
 
 // [[Rcpp::export]]
-arma::mat costMatrix(arma::colvec y, arma::mat X, double Lmin = 1) {
+arma::mat costMatrix(arma::colvec& y, arma::mat& X, double Lmin = 1) {
 
     double nl = y.size() - Lmin + 1;
 
@@ -49,12 +49,3 @@ arma::mat costMatrix(arma::colvec y, arma::mat X, double Lmin = 1) {
 
     return C1;
 }
-
-
-// You can include R code blocks in C++ files processed with sourceCpp
-// (useful for testing and development). The R code will be automatically
-// run after the compilation.
-//
-
-/*** R
-*/
