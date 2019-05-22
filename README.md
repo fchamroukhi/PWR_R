@@ -1,23 +1,29 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-Overview
---------
+
+## Overview
 
 <!-- badges: start -->
+
 <!-- badges: end -->
-A polynomial piecewise regression model for the optimal segmentation of a time series with regime changes. It uses dynamic programming for the segmentation and the LSE for the estimation of the regression parameters.
 
-Installation
-------------
+A polynomial piecewise regression model for the optimal segmentation of
+a time series with regime changes. It uses dynamic programming for the
+segmentation and the LSE for the estimation of the regression
+parameters.
 
-You can install the development version of RHLP from [GitHub](https://github.com/) with:
+## Installation
+
+You can install the development version of RHLP from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("fchamroukhi/PWR_R")
 ```
 
-To build *vignettes* for examples of usage, type the command below instead:
+To build *vignettes* for examples of usage, type the command below
+instead:
 
 ``` r
 # install.packages("devtools")
@@ -32,15 +38,14 @@ Use the following command to display vignettes:
 browseVignettes("PWR")
 ```
 
-Usage
------
+## Usage
 
 ``` r
 library(PWR)
 
 data("simulatedtimeserie")
 fData <- FData$new()
-fData$setData(t(simulatedtimeserie$X), t(simulatedtimeserie$Y))
+fData$setData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
 
 K <- 5 # number of segments
 p <- 3 # polynomial degree
