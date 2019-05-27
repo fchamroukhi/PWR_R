@@ -44,8 +44,7 @@ browseVignettes("PWR")
 library(PWR)
 
 data("simulatedtimeserie")
-fData <- FData$new()
-fData$setData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
+fData <- FData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
 
 K <- 5 # number of segments
 p <- 3 # polynomial degree
