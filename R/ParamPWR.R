@@ -10,7 +10,7 @@ ParamPWR <- setRefClass(
 
     gamma = "matrix",
     beta = "matrix",
-    sigma = "matrix"
+    sigma2 = "matrix"
   ),
   methods = list(
 
@@ -25,7 +25,7 @@ ParamPWR <- setRefClass(
 
       gamma <<- matrix(NA, p + 1)
       beta <<- matrix(NA, p + 1, K)
-      sigma <<- matrix(NA, K)
+      sigma2 <<- matrix(NA, K)
 
     },
 
@@ -48,10 +48,10 @@ ParamPWR <- setRefClass(
 
         if (p == 0) {
           z <- yij - X_ij * beta[, k]
-          sigma[k] <<- t(z) * z / nk # Variances
+          sigma2[k] <<- t(z) * z / nk # Variances
         } else {
           z <- yij - X_ij %*% beta[, k]
-          sigma[k] <<- t(z) %*% z / nk # Variances
+          sigma2[k] <<- t(z) %*% z / nk # Variances
         }
       }
     }
