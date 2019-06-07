@@ -1,43 +1,59 @@
+#' @export
 ParamPWR <- setRefClass(
   "ParamPWR",
-  fields = list(gamma = "matrix",
-                beta = "matrix",
-                sigma = "matrix"),
+  fields = list(
+    fData = "FData",
+    phi = "matrix",
+
+    K = "numeric", # Number of regimes
+    p = "numeric", # Dimension of beta (order of polynomial regression)
+
+    gamma = "matrix",
+    beta = "matrix",
+    sigma = "matrix"
+  ),
   methods = list(
+
+    initialize = function(fData = FData(numeric(1), matrix(1)), K = 2, p = 2) {
+
+      fData <<- fData
+
+      phi <<- designmatrix(fData$X, p)$XBeta
+
+      K <<- K
+      p <<- p
+
+      gamma <<- matrix(NA, p + 1)
+      beta <<- matrix(NA, p + 1, K)
+      sigma <<- matrix(NA, K)
+
+    },
+
     computeDynamicProgram = function(C1, K){
-      ### dynamic programming
+      # Dynamic programming
       solution <- dynamicProg(C1, K)
       Ck <- solution$J
-      gamma <<- matrix(c(0, solution$t_est[nrow(solution$t_est), ]))  # change points
+      gamma <<- matrix(c(0, solution$t_est[nrow(solution$t_est), ]))  # Change points
       return(Ck)
     },
 
-    computeParam = function(modelPWR, phi){
-      for (k in 1:modelPWR$K) {
+    computeParam = function(){
+      for (k in 1:K) {
         i <- gamma[k] + 1
         j <- gamma[k + 1]
         nk <- j - i + 1
-        yij <- modelPWR$Y[i:j]
-        X_ij <- phi$XBeta[i:j,]
+        yij <- fData$Y[i:j]
+        X_ij <- phi[i:j,]
         beta[,k] <<- solve(t(X_ij) %*% X_ij) %*% t(X_ij) %*% yij
 
-        if (modelPWR$p == 0) {
+        if (p == 0) {
           z <- yij - X_ij * beta[, k]
-          sigma[k] <<- t(z) * z / nk            #variances
-          #mean_function[i:j,] <- X_ij * betak[,k]
+          sigma[k] <<- t(z) * z / nk # Variances
         } else {
           z <- yij - X_ij %*% beta[, k]
-          sigma[k] <<- t(z) %*% z / nk             #variances
-          #mean_function[i:j,] <- X_ij %*% betak[,k]
+          sigma[k] <<- t(z) %*% z / nk # Variances
         }
       }
     }
   )
 )
-
-ParamPWR <- function(modelPWR) {
-  gamma <- matrix(NA, modelPWR$p + 1)
-  beta <- matrix(NA, modelPWR$p + 1, modelPWR$K)
-  sigma <- matrix(NA, modelPWR$K)
-  new("ParamPWR", gamma = gamma, beta = beta, sigma = sigma)
-}

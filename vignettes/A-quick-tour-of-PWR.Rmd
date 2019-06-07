@@ -38,7 +38,6 @@ See `help(package="PWR")` for further details and references provided by `citati
 
 ```{r}
 data("simulatedtimeserie")
-fData <- FData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
 ```
 
 # Set up PWR model parameters
@@ -46,13 +45,12 @@ fData <- FData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
 ```{r}
 K <- 5 # number of segments
 p <- 3 # polynomial degree
-modelPWR <- ModelPWR(fData, K, p)
 ```
 
 # Estimation
 
 ```{r}
-solution <- fitPWRFisher(modelPWR)
+solution <- fitPWRFisher(simulatedtimeserie$X, t(simulatedtimeserie$Y), K, p)
 ```
 
 # Plots

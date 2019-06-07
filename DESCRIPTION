@@ -7,6 +7,7 @@ Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
+Encoding: UTF-8
 LazyData: true
 Collate:
     PWR-package.R
@@ -14,10 +15,9 @@ Collate:
     utils.R
     dynamicProg.R
     FData.R
-    ModelPWR.R
     ParamPWR.R
     StatPWR.R
-    FittedPWR.R
+    ModelPWR.R
     ModelLearner.R
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1

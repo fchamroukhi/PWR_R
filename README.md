@@ -44,13 +44,11 @@ browseVignettes("PWR")
 library(PWR)
 
 data("simulatedtimeserie")
-fData <- FData(simulatedtimeserie$X, t(simulatedtimeserie$Y))
 
 K <- 5 # number of segments
 p <- 3 # polynomial degree
-modelPWR <- ModelPWR(fData, K, p)
 
-solution <- fitPWRFisher(modelPWR)
+solution <- fitPWRFisher(simulatedtimeserie$X, t(simulatedtimeserie$Y), K, p)
 
 solution$plot()
 ```

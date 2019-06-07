@@ -1,26 +1,30 @@
-fitPWRFisher = function(modelPWR) {
+#' @export
+fitPWRFisher = function(X, Y, K, p) {
+
+  fData <- FData(X = X, Y = Y)
+
   start_time <- Sys.time()
 
-  phi <- designmatrix(modelPWR$X, modelPWR$p)
-  Lmin <- modelPWR$p + 1
+  Lmin <- p + 1
 
-  # C1 <- costMatrixPPWR(modelPWR, phi, Lmin)
-  C1 <- costMatrix(modelPWR$Y, designmatrix(modelPWR$X, p)$XBeta)
+  paramPWR <- ParamPWR(fData = fData, K = K, p = p)
 
-  paramPWR <- ParamPWR(modelPWR)
-  Ck <- paramPWR$computeDynamicProgram(C1, modelPWR$K)
-  paramPWR$computeParam(modelPWR, phi)
+  C1 <- costMatrix(fData$Y, paramPWR$phi)
 
-  statPWR <- StatPWR(modelPWR)
-  # estimation of the corresponding regression coefficients
-  statPWR$computeMeanFunction(paramPWR, phi)
+  Ck <- paramPWR$computeDynamicProgram(C1, K)
+  paramPWR$computeParam()
 
-  # classes estimees:
+  statPWR <- StatPWR(paramPWR = paramPWR)
+
+  # Estimation of the corresponding regression coefficients
+  statPWR$computeMeanFunction(paramPWR)
+
+  # Classes estimees:
   statPWR$klasEstimate(paramPWR)
 
-  statPWR$computeRegressors(phi, paramPWR)
+  statPWR$computeRegressors(paramPWR)
   statPWR$objective = Ck[length(Ck)]
   statPWR$cpu_time = as.numeric(Sys.time() - start_time)
 
-  return(FittedPWR(modelPWR, paramPWR, statPWR))
+  return(ModelPWR(paramPWR = paramPWR, statPWR = statPWR))
 }
