@@ -1,3 +1,4 @@
+#' @import methods
 ## usethis namespace: start
 #' @useDynLib PWR, .registration = TRUE
 ## usethis namespace: end
