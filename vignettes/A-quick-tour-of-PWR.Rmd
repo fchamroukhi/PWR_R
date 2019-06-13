@@ -53,6 +53,12 @@ p <- 3 # polynomial degree
 solution <- fitPWRFisher(simulatedtimeserie$X, t(simulatedtimeserie$Y), K, p)
 ```
 
+# Summary
+
+```{r}
+solution$summary()
+```
+
 # Plots
 
 ```{r}
