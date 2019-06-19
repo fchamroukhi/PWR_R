@@ -61,6 +61,14 @@ solution$summary()
 
 # Plots
 
+## Regressors
+
 ```{r}
-solution$plot()
+solution$plot(what = "regressors")
+```
+
+## Segmentation
+
+```{r}
+solution$plot(what = "segmentation")
 ```
