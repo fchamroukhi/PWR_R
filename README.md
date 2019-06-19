@@ -45,12 +45,12 @@ library(PWR)
 
 data("simulatedtimeserie")
 
-K <- 5 # number of segments
-p <- 3 # polynomial degree
+K <- 5 # Number of segments
+p <- 3 # Polynomial degree
 
-solution <- fitPWRFisher(simulatedtimeserie$X, t(simulatedtimeserie$Y), K, p)
+pwr <- fitPWRFisher(simulatedtimeserie$X, simulatedtimeserie$Y, K, p)
 
-solution$plot()
+pwr$plot()
 ```
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-5-2.png" style="display: block; margin: auto;" />

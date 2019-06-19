@@ -2,7 +2,9 @@
 ParamPWR <- setRefClass(
   "ParamPWR",
   fields = list(
-    fData = "FData",
+    X = "numeric",
+    Y = "numeric",
+    m = "numeric",
     phi = "matrix",
 
     K = "numeric", # Number of regimes
@@ -14,11 +16,12 @@ ParamPWR <- setRefClass(
   ),
   methods = list(
 
-    initialize = function(fData = FData(numeric(1), matrix(1)), K = 2, p = 2) {
+    initialize = function(X = numeric(), Y = numeric(1), K = 2, p = 3) {
 
-      fData <<- fData
-
-      phi <<- designmatrix(fData$X, p)$XBeta
+      X <<- X
+      Y <<- Y
+      m <<- length(Y)
+      phi <<- designmatrix(X, p)$XBeta
 
       K <<- K
       p <<- p
@@ -42,7 +45,7 @@ ParamPWR <- setRefClass(
         i <- gamma[k] + 1
         j <- gamma[k + 1]
         nk <- j - i + 1
-        yij <- fData$Y[i:j]
+        yij <- Y[i:j]
         X_ij <- phi[i:j,]
         beta[,k] <<- solve(t(X_ij) %*% X_ij) %*% t(X_ij) %*% yij
 

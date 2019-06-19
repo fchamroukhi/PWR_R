@@ -31,7 +31,7 @@ library(PWR)
 
 # Introduction
 
-**PWR** is a contributed R package for segmentation. It uses dynamic programming for the segmentation and the LSE for the estimation of the regression parameters. This document gives a quick tour of **PWR** (version `r packageVersion("PWR")`) functionalities. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. 
+**PWR** is a R package for segmentation. It uses dynamic programming for the segmentation and the LSE for the estimation of the regression parameters. This document gives a quick tour of **PWR** (version `r packageVersion("PWR")`) functionalities. It was written in R Markdown, using the [knitr](https://cran.r-project.org/package=knitr) package for production. 
 See `help(package="PWR")` for further details and references provided by `citation("PWR")`.
 
 # Load data
@@ -43,20 +43,20 @@ data("simulatedtimeserie")
 # Set up PWR model parameters
 
 ```{r}
-K <- 5 # number of segments
-p <- 3 # polynomial degree
+K <- 5 # Number of segments
+p <- 3 # Polynomial degree
 ```
 
 # Estimation
 
 ```{r}
-solution <- fitPWRFisher(simulatedtimeserie$X, t(simulatedtimeserie$Y), K, p)
+pwr <- fitPWRFisher(simulatedtimeserie$X, simulatedtimeserie$Y, K, p)
 ```
 
 # Summary
 
 ```{r}
-solution$summary()
+pwr$summary()
 ```
 
 # Plots
@@ -64,11 +64,11 @@ solution$summary()
 ## Regressors
 
 ```{r}
-solution$plot(what = "regressors")
+pwr$plot(what = "regressors")
 ```
 
 ## Segmentation
 
 ```{r}
-solution$plot(what = "segmentation")
+pwr$plot(what = "segmentation")
 ```

@@ -11,13 +11,13 @@ StatPWR <- setRefClass(
   ),
   methods = list(
 
-    initialize = function(paramPWR = ParamPWR(fData = FData(numeric(1), matrix(1)), K = 2, p = 2)) {
+    initialize = function(paramPWR = ParamPWR()) {
 
-      z_ik <<- matrix(0, paramPWR$fData$m, paramPWR$K)
-      klas <<- matrix(NA, paramPWR$fData$m, 1)
-      mean_function <<- matrix(NA, nrow = paramPWR$fData$m , ncol = 1)
+      z_ik <<- matrix(0, paramPWR$m, paramPWR$K)
+      klas <<- matrix(NA, paramPWR$m, 1)
+      mean_function <<- matrix(NA, nrow = paramPWR$m , ncol = 1)
       cpu_time <<- Inf
-      regressors <<- matrix(NA, paramPWR$fData$m, paramPWR$K)
+      regressors <<- matrix(NA, paramPWR$m, paramPWR$K)
       objective <<- -Inf
 
     },

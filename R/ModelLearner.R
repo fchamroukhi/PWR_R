@@ -1,15 +1,13 @@
 #' @export
 fitPWRFisher = function(X, Y, K, p) {
 
-  fData <- FData(X = X, Y = Y)
-
   start_time <- Sys.time()
 
   Lmin <- p + 1
 
-  paramPWR <- ParamPWR(fData = fData, K = K, p = p)
+  paramPWR <- ParamPWR(X = X, Y = Y, K = K, p = p)
 
-  C1 <- costMatrix(fData$Y, paramPWR$phi)
+  C1 <- costMatrix(Y, paramPWR$phi)
 
   Ck <- paramPWR$computeDynamicProgram(C1, K)
   paramPWR$computeParam()
