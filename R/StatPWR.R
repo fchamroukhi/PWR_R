@@ -10,9 +10,7 @@ StatPWR <- setRefClass(
     objective = "numeric"
   ),
   methods = list(
-
     initialize = function(paramPWR = ParamPWR()) {
-
       z_ik <<- matrix(0, paramPWR$m, paramPWR$K)
       klas <<- matrix(NA, paramPWR$m, 1)
       mean_function <<- matrix(NA, nrow = paramPWR$m , ncol = 1)
@@ -24,12 +22,12 @@ StatPWR <- setRefClass(
 
     klasEstimate = function(paramPWR) {
       K <- ncol(paramPWR$beta)
-      # Classes estimees:
+      # Estimated classes
       for (k in 1:K)  {
         i <- paramPWR$gamma[k] + 1
         j <- paramPWR$gamma[k + 1]
         klas[i:j] <<- k
-        z_ik[i:j,k] <<- 1
+        z_ik[i:j, k] <<- 1
       }
     },
 
@@ -38,17 +36,17 @@ StatPWR <- setRefClass(
       for (k in 1:K) {
         i <- paramPWR$gamma[k] + 1
         j <- paramPWR$gamma[k + 1]
-        X_ij <- paramPWR$phi[i:j,]
+        X_ij <- paramPWR$phi[i:j, ]
 
-        if (p == 0) {
-          mean_function[i:j,] <<- X_ij * paramPWR$beta[,k]
+        if (paramPWR$p == 0) {
+          mean_function[i:j, ] <<- X_ij * paramPWR$beta[, k]
         } else {
-          mean_function[i:j,] <<- X_ij %*% paramPWR$beta[,k]
+          mean_function[i:j, ] <<- X_ij %*% paramPWR$beta[, k]
         }
       }
     },
 
-    computeRegressors = function(paramPWR){
+    computeRegressors = function(paramPWR) {
       regressors <<- paramPWR$phi %*% paramPWR$beta
     }
   )

@@ -1,6 +1,5 @@
 #' @export
-fitPWRFisher = function(X, Y, K, p) {
-
+fitPWRFisher = function(X, Y, K, p = 3) {
   start_time <- Sys.time()
 
   Lmin <- p + 1

@@ -6,8 +6,8 @@ ModelPWR <- setRefClass(
     statPWR = "StatPWR"
   ),
   methods = list(
-    plot = function(what = c("regressors", "segmentation")) {
 
+    plot = function(what = c("regressors", "segmentation")) {
       what <- match.arg(what, several.ok = TRUE)
 
       oldpar <- par()[c("mai", "mgp")]
@@ -54,7 +54,6 @@ ModelPWR <- setRefClass(
     },
 
     summary = function() {
-
       digits = getOption("digits")
 
       title <- paste("Fitted PWR model")
