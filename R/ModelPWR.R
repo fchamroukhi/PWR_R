@@ -1,3 +1,12 @@
+#' A Reference Class which represents a fitted PWR model.
+#'
+#' ModelPWR represents an estimated PWR model.
+#'
+#' @field paramPWR A [ParamPWR][ParamPWR] object. It contains the estimated
+#'   values of the parameters.
+#' @field statPWR A [StatPWR][StatPWR] object. It contains all the statistics
+#'   associated to the PWR model.
+#' @seealso [ParamPWR], [StatPWR]
 #' @export
 ModelPWR <- setRefClass(
   "ModelPWR",
@@ -8,6 +17,18 @@ ModelPWR <- setRefClass(
   methods = list(
 
     plot = function(what = c("regressors", "segmentation")) {
+      "Plot method.
+      \\describe{
+        \\item{\\code{what}}{The type of graph requested:
+          \\itemize{
+            \\item \\code{\"regressors\" = } Polynomial regression components.
+            \\item \\code{\"segmentation\" = } Estimated signal (Estimated
+            piecewise regression and transition time points).
+          }
+        }
+      }
+      By default, all the above graphs are produced."
+
       what <- match.arg(what, several.ok = TRUE)
 
       oldpar <- par()[c("mai", "mgp")]
@@ -54,6 +75,8 @@ ModelPWR <- setRefClass(
     },
 
     summary = function() {
+      "Summary method."
+
       digits = getOption("digits")
 
       title <- paste("Fitted PWR model")

@@ -1,3 +1,24 @@
+#' A Reference Class which contains parameters of a PWR model.
+#'
+#' ParamPWR contains all the parameters of a PWR model.
+#'
+#' @field X Numeric vector of length \emph{m} representing the covariates/inputs
+#'   \eqn{x_{1},\dots,x_{m}}.
+#' @field Y Numeric vector of length \emph{m} representing the observed
+#'   response/output \eqn{y_{1},\dots,y_{m}}.
+#' @field m Numeric. Length of the response/output vector `Y`.
+#' @field K The number of regimes (PWR components).
+#' @field p The order of the polynomial regression. `p` is fixed to 3 by
+#'   default.
+#' @field gamma Set of transition points. `gamma` is a column matrix of size
+#'   \eqn{(K + 1, 1)}.
+#' @field beta Parameters of the polynomial regressions. `beta` is a matrix of
+#'   dimension \eqn{(p + 1, K)}, with `p` the order of the polynomial
+#'   regression. `p` is fixed to 3 by default.
+#' @field sigma2 The variances for the `K` regimes. `sigma2` is a matrix of size
+#'   \eqn{(K, 1)}.
+#' @field phi A list giving the regression design matrices for the polynomial
+#'   and the logistic regressions.
 #' @export
 ParamPWR <- setRefClass(
   "ParamPWR",
@@ -24,13 +45,16 @@ ParamPWR <- setRefClass(
       K <<- K
       p <<- p
 
-      gamma <<- matrix(NA, p + 1)
+      gamma <<- matrix(NA, K + 1)
       beta <<- matrix(NA, p + 1, K)
       sigma2 <<- matrix(NA, K)
 
     },
 
     computeDynamicProgram = function(C1, K) {
+      "Method which implements the dynamic programming based on the cost matrix
+      \\code{C1} and the number of regimes/segments \\code{K}."
+
       # Dynamic programming
       solution <- dynamicProg(C1, K)
       Ck <- solution$J
@@ -39,6 +63,9 @@ ParamPWR <- setRefClass(
     },
 
     computeParam = function() {
+      "Method which estimates the parameters \\code{beta} and \\code{sigma2}
+      knowing the transition points \\code{gamma}."
+
       for (k in 1:K) {
         i <- gamma[k] + 1
         j <- gamma[k + 1]

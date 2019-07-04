@@ -37,7 +37,7 @@ See `help(package="PWR")` for further details and references provided by `citati
 # Load data
 
 ```{r}
-data("simulatedtimeserie")
+data("toydataset")
 ```
 
 # Set up PWR model parameters
@@ -50,7 +50,7 @@ p <- 3 # Polynomial degree
 # Estimation
 
 ```{r}
-pwr <- fitPWRFisher(simulatedtimeserie$X, simulatedtimeserie$Y, K, p)
+pwr <- fitPWRFisher(toydataset$x, toydataset$y, K, p)
 ```
 
 # Summary

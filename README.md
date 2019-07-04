@@ -43,12 +43,12 @@ browseVignettes("PWR")
 ``` r
 library(PWR)
 
-data("simulatedtimeserie")
+data("toydataset")
 
 K <- 5 # Number of segments
 p <- 3 # Polynomial degree
 
-pwr <- fitPWRFisher(simulatedtimeserie$X, simulatedtimeserie$Y, K, p)
+pwr <- fitPWRFisher(toydataset$x, toydataset$y, K, p)
 
 pwr$plot()
 ```
