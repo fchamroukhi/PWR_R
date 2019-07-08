@@ -39,5 +39,5 @@ fitPWRFisher = function(X, Y, K, p = 3) {
   statPWR$objective = Ck[length(Ck)]
   statPWR$cpu_time = as.numeric(Sys.time() - start_time)
 
-  return(ModelPWR(paramPWR = paramPWR, statPWR = statPWR))
+  return(ModelPWR(param = paramPWR, stat = statPWR))
 }

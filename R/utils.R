@@ -25,18 +25,6 @@ designmatrix = function(x, p, q = NULL, n = 1) {
   return(list(Xw = Xw, XBeta = XBeta))
 }
 
-tril <- function(A, K) {
-  n <- ncol(A)
-  for (i in 1:n) {
-    for (j in 1:n) {
-      if (i < (j - K))  {
-        A[i,j] <- 0
-      }
-    }
-  }
-  return(A)
-}
-
 ones <- function(n, d, g = 1) {
   if (g == 1) {
     return(matrix(1, n, d))
@@ -75,7 +63,6 @@ drnorm <- function(n, d, mean, sd) {
   }
   return(A)
 }
-
 
 lognormalize <- function(M) {
   if (!is.matrix(M)) {

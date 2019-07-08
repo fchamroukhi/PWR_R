@@ -1,6 +1,6 @@
 Type: Package
 Package: PWR
-Title: Piecewise Regression (PWR) for Optimal Time Series Segmentation
+Title: Piecewise Regression ('PWR') for Optimal Time Series Segmentation
 Version: 0.1.0
 Authors@R: c(person("Faicel", "Chamroukhi", role = c("aut"),
     email = "faicel.chamroukhi@unicaen.fr",
@@ -32,7 +32,7 @@ Collate:
     ParamPWR.R
     StatPWR.R
     ModelPWR.R
-    ModelLearner.R
+    fitPWRFisher.R
     data-realdataset.R
     data-toydataset.R
 VignetteBuilder: knitr

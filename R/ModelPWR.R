@@ -2,17 +2,17 @@
 #'
 #' ModelPWR represents an estimated PWR model.
 #'
-#' @field paramPWR A [ParamPWR][ParamPWR] object. It contains the estimated
+#' @field param A [ParamPWR][ParamPWR] object. It contains the estimated
 #'   values of the parameters.
-#' @field statPWR A [StatPWR][StatPWR] object. It contains all the statistics
+#' @field stat A [StatPWR][StatPWR] object. It contains all the statistics
 #'   associated to the PWR model.
 #' @seealso [ParamPWR], [StatPWR]
 #' @export
 ModelPWR <- setRefClass(
   "ModelPWR",
   fields = list(
-    paramPWR = "ParamPWR",
-    statPWR = "StatPWR"
+    param = "ParamPWR",
+    stat = "StatPWR"
   ),
   methods = list(
 
@@ -21,9 +21,10 @@ ModelPWR <- setRefClass(
       \\describe{
         \\item{\\code{what}}{The type of graph requested:
           \\itemize{
-            \\item \\code{\"regressors\" = } Polynomial regression components.
-            \\item \\code{\"segmentation\" = } Estimated signal (Estimated
-            piecewise regression and transition time points).
+            \\item \\code{\"regressors\" = } Polynomial regression components
+              (field \\code{regressors} of class \\link{StatPWR}).
+            \\item \\code{\"segmentation\" = } Estimated signal
+              (field \\code{mean_function} of class \\link{StatPWR}).
           }
         }
       }
@@ -34,24 +35,24 @@ ModelPWR <- setRefClass(
       oldpar <- par()[c("mai", "mgp")]
       on.exit(par(oldpar), add = TRUE)
 
-      yaxislim <- c(mean(paramPWR$Y) - 2 * sqrt(var(paramPWR$Y)), mean(paramPWR$Y) + 2 * sqrt(var(paramPWR$Y)))
+      yaxislim <- c(mean(param$Y) - 2 * sqrt(var(param$Y)), mean(param$Y) + 2 * sqrt(var(param$Y)))
 
-      colorsvec <- rainbow(paramPWR$K)
+      colorsvec <- rainbow(param$K)
 
       if (any(what == "regressors")) {
         # Time series, regressors, and segmentation
         par(mai = c(0.6, 1, 0.5, 0.5), mgp = c(2, 1, 0))
-        plot.default(paramPWR$X, paramPWR$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
+        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
         title(main = "Time series, PWR regimes, and segmentation")
-        for (k in 1:paramPWR$K) {
-          model_k <- statPWR$regressors[, k]
+        for (k in 1:param$K) {
+          model_k <- stat$regressors[, k]
 
-          index <- statPWR$klas == k
+          index <- stat$klas == k
           active_model_k <- model_k[index]
-          active_period_model_k <- paramPWR$X[index]
+          active_period_model_k <- param$X[index]
 
           if (length(active_model_k) != 0) {
-            lines(paramPWR$X, model_k, col = colorsvec[k], lty = "dotted", lwd = 1.5)
+            lines(param$X, model_k, col = colorsvec[k], lty = "dotted", lwd = 1.5)
             lines(active_period_model_k, active_model_k, type = "l", col = colorsvec[k], lwd = 1.5)
           }
         }
@@ -59,17 +60,17 @@ ModelPWR <- setRefClass(
 
       if (any(what == "segmentation")) {
         # Time series, estimated regression function, and optimal segmentation
-        plot.default(paramPWR$X, paramPWR$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
+        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
         title(main = "Time series, PWR function, and segmentation")
 
-        for (k in 1:paramPWR$K) {
-          Ik = paramPWR$gamma[k] + 1:(paramPWR$gamma[k + 1] - paramPWR$gamma[k])
-          segmentk = statPWR$mean_function[Ik]
-          lines(paramPWR$X[t(Ik)], segmentk, type = "l", col = colorsvec[k], lwd = 1.5)
+        for (k in 1:param$K) {
+          Ik = param$gamma[k] + 1:(param$gamma[k + 1] - param$gamma[k])
+          segmentk = stat$mean_function[Ik]
+          lines(param$X[t(Ik)], segmentk, type = "l", col = colorsvec[k], lwd = 1.5)
         }
 
-        for (i in 1:length(paramPWR$gamma)) {
-          abline(v = paramPWR$X[paramPWR$gamma[i]], col = "red", lty = "dotted", lwd = 1.5)
+        for (i in 1:length(param$gamma)) {
+          abline(v = param$X[param$gamma[i]], col = "red", lty = "dotted", lwd = 1.5)
         }
       }
     },
@@ -91,26 +92,26 @@ ModelPWR <- setRefClass(
 
       cat("\n")
       cat("\n")
-      cat(paste0("PWR model with K = ", paramPWR$K, ifelse(paramPWR$K > 1, " components", " component"), ":"))
+      cat(paste0("PWR model with K = ", param$K, ifelse(param$K > 1, " components", " component"), ":"))
       cat("\n")
 
       cat("\nClustering table (Number of observations in each regimes):\n")
-      print(table(statPWR$klas))
+      print(table(stat$klas))
 
       cat("\nRegression coefficients:\n\n")
-      if (paramPWR$p > 0) {
-        row.names = c("1", sapply(1:paramPWR$p, function(x) paste0("X^", x)))
+      if (param$p > 0) {
+        row.names = c("1", sapply(1:param$p, function(x) paste0("X^", x)))
       } else {
         row.names = "1"
       }
 
-      betas <- data.frame(paramPWR$beta, row.names = row.names)
-      colnames(betas) <- sapply(1:paramPWR$K, function(x) paste0("Beta(K = ", x, ")"))
+      betas <- data.frame(param$beta, row.names = row.names)
+      colnames(betas) <- sapply(1:param$K, function(x) paste0("Beta(K = ", x, ")"))
       print(betas, digits = digits)
 
       cat("\nVariances:\n\n")
-      sigma2 = data.frame(t(paramPWR$sigma2), row.names = NULL)
-      colnames(sigma2) = sapply(1:paramPWR$K, function(x) paste0("Sigma2(K = ", x, ")"))
+      sigma2 = data.frame(t(param$sigma2), row.names = NULL)
+      colnames(sigma2) = sapply(1:param$K, function(x) paste0("Sigma2(K = ", x, ")"))
       print(sigma2, digits = digits, row.names = FALSE)
 
     }

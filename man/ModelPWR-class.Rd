@@ -11,10 +11,10 @@ ModelPWR represents an estimated PWR model.
 \section{Fields}{
 
 \describe{
-\item{\code{paramPWR}}{A \link{ParamPWR} object. It contains the estimated
+\item{\code{param}}{A \link{ParamPWR} object. It contains the estimated
 values of the parameters.}
 
-\item{\code{statPWR}}{A \link{StatPWR} object. It contains all the statistics
+\item{\code{stat}}{A \link{StatPWR} object. It contains all the statistics
 associated to the PWR model.}
 }}
 
@@ -25,9 +25,10 @@ associated to the PWR model.}
 \describe{
   \item{\code{what}}{The type of graph requested:
     \itemize{
-      \item \code{"regressors" = } Polynomial regression components.
-      \item \code{"segmentation" = } Estimated signal (Estimated
-      piecewise regression and transition time points).
+      \item \code{"regressors" = } Polynomial regression components
+        (field \code{regressors} of class \link{StatPWR}).
+      \item \code{"segmentation" = } Estimated signal
+        (field \code{mean_function} of class \link{StatPWR}).
     }
   }
 }
