@@ -20,7 +20,6 @@
 #' @seealso [ModelPWR], [ParamPWR], [StatPWR]
 #' @export
 fitPWRFisher = function(X, Y, K, p = 3) {
-  start_time <- Sys.time()
 
   Lmin <- p + 1
 
@@ -37,7 +36,6 @@ fitPWRFisher = function(X, Y, K, p = 3) {
   statPWR$computeStats(paramPWR)
 
   statPWR$objective = Ck[length(Ck)]
-  statPWR$cpu_time = as.numeric(Sys.time() - start_time)
 
   return(ModelPWR(param = paramPWR, stat = statPWR))
 }

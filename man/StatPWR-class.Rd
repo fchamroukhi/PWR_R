@@ -23,9 +23,6 @@ parameters. \code{mean_function} is a matrix of size \eqn{(m, 1)}.}
 estimated polynomial regression components.}
 
 \item{\code{objective}}{Numeric. Value of the objective function.}
-
-\item{\code{cpu_time}}{Numeric. Average computing time of the dynamic programming
-algorithm run.}
 }}
 
 \section{Methods}{

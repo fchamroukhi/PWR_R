@@ -71,8 +71,8 @@ ParamPWR <- setRefClass(
         j <- gamma[k + 1]
         nk <- j - i + 1
         yij <- Y[i:j]
-        X_ij <- phi[i:j, ]
-        beta[, k] <<- solve(t(X_ij) %*% X_ij) %*% t(X_ij) %*% yij
+        X_ij <- phi[i:j, , drop = FALSE]
+        beta[, k] <<- solve(t(X_ij) %*% X_ij, tol = 0) %*% t(X_ij) %*% yij
 
         if (p == 0) {
           z <- yij - X_ij * beta[, k]

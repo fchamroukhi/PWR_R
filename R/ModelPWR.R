@@ -16,7 +16,7 @@ ModelPWR <- setRefClass(
   ),
   methods = list(
 
-    plot = function(what = c("regressors", "segmentation")) {
+    plot = function(what = c("regressors", "segmentation"), ...) {
       "Plot method.
       \\describe{
         \\item{\\code{what}}{The type of graph requested:
@@ -27,12 +27,13 @@ ModelPWR <- setRefClass(
               (field \\code{mean_function} of class \\link{StatPWR}).
           }
         }
+        \\item{\\code{\\dots}}{Other graphics parameters.}
       }
       By default, all the above graphs are produced."
 
       what <- match.arg(what, several.ok = TRUE)
 
-      oldpar <- par()[c("mai", "mgp")]
+      oldpar <- par(no.readonly = TRUE)
       on.exit(par(oldpar), add = TRUE)
 
       yaxislim <- c(mean(param$Y) - 2 * sqrt(var(param$Y)), mean(param$Y) + 2 * sqrt(var(param$Y)))
@@ -42,7 +43,7 @@ ModelPWR <- setRefClass(
       if (any(what == "regressors")) {
         # Time series, regressors, and segmentation
         par(mai = c(0.6, 1, 0.5, 0.5), mgp = c(2, 1, 0))
-        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
+        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y", ...)
         title(main = "Time series, PWR regimes, and segmentation")
         for (k in 1:param$K) {
           model_k <- stat$regressors[, k]
@@ -52,33 +53,35 @@ ModelPWR <- setRefClass(
           active_period_model_k <- param$X[index]
 
           if (length(active_model_k) != 0) {
-            lines(param$X, model_k, col = colorsvec[k], lty = "dotted", lwd = 1.5)
-            lines(active_period_model_k, active_model_k, type = "l", col = colorsvec[k], lwd = 1.5)
+            lines(param$X, model_k, col = colorsvec[k], lty = "dotted", lwd = 1.5, ...)
+            lines(active_period_model_k, active_model_k, type = "l", col = colorsvec[k], lwd = 1.5, ...)
           }
         }
       }
 
       if (any(what == "segmentation")) {
         # Time series, estimated regression function, and optimal segmentation
-        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y")
+        plot.default(param$X, param$Y, type = "l", ylim = yaxislim, xlab = "x", ylab = "y", ...)
         title(main = "Time series, PWR function, and segmentation")
 
         for (k in 1:param$K) {
           Ik = param$gamma[k] + 1:(param$gamma[k + 1] - param$gamma[k])
           segmentk = stat$mean_function[Ik]
-          lines(param$X[t(Ik)], segmentk, type = "l", col = colorsvec[k], lwd = 1.5)
+          lines(param$X[t(Ik)], segmentk, type = "l", col = colorsvec[k], lwd = 1.5, ...)
         }
 
         for (i in 1:length(param$gamma)) {
-          abline(v = param$X[param$gamma[i]], col = "red", lty = "dotted", lwd = 1.5)
+          abline(v = param$X[param$gamma[i]], col = "red", lty = "dotted", lwd = 1.5, ...)
         }
       }
     },
 
-    summary = function() {
-      "Summary method."
-
-      digits = getOption("digits")
+    summary = function(digits = getOption("digits")) {
+      "Summary method.
+      \\describe{
+        \\item{\\code{digits}}{The number of significant digits to use when
+          printing.}
+      }"
 
       title <- paste("Fitted PWR model")
       txt <- paste(rep("-", min(nchar(title) + 4, getOption("width"))), collapse = "")

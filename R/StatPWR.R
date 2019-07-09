@@ -10,8 +10,6 @@
 #' @field regressors Matrix of size \eqn{(m, K)} giving the values of the
 #'   estimated polynomial regression components.
 #' @field objective Numeric. Value of the objective function.
-#' @field cpu_time Numeric. Average computing time of the dynamic programming
-#' algorithm run.
 #' @seealso [ParamPWR]
 #' @export
 StatPWR <- setRefClass(
@@ -21,15 +19,13 @@ StatPWR <- setRefClass(
     klas = "matrix",
     mean_function = "matrix",
     regressors = "matrix",
-    objective = "numeric",
-    cpu_time = "numeric"
+    objective = "numeric"
   ),
   methods = list(
     initialize = function(paramPWR = ParamPWR()) {
       z_ik <<- matrix(0, paramPWR$m, paramPWR$K)
       klas <<- matrix(NA, paramPWR$m, 1)
       mean_function <<- matrix(NA, nrow = paramPWR$m , ncol = 1)
-      cpu_time <<- Inf
       regressors <<- matrix(NA, paramPWR$m, paramPWR$K)
       objective <<- -Inf
 
