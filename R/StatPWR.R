@@ -28,25 +28,25 @@ StatPWR <- setRefClass(
       mean_function <<- matrix(NA, nrow = paramPWR$m , ncol = 1)
       regressors <<- matrix(NA, paramPWR$m, paramPWR$K)
       objective <<- -Inf
-
+      
     },
-
+    
     computeStats = function(paramPWR) {
       "Method used at the end of the dynamic programming algorithm to compute
       statistics based on parameters provided by \\code{paramPWR}."
-
+      
       # Regressors
       regressors <<- paramPWR$phi %*% paramPWR$beta
-
+      
       # Estimated classes and mean function
       for (k in 1:paramPWR$K)  {
-
+        
         i <- paramPWR$gamma[k] + 1
         j <- paramPWR$gamma[k + 1]
-
+        
         klas[i:j] <<- k
         z_ik[i:j, k] <<- 1
-
+        
         X_ij <- paramPWR$phi[i:j, ]
         if (paramPWR$p == 0) {
           mean_function[i:j, ] <<- X_ij * paramPWR$beta[, k]
