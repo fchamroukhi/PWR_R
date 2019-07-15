@@ -9,8 +9,10 @@ Authors@R: c(person("Faicel", "Chamroukhi", role = c("aut"),
     email = "marius.bartcus@gmail.com"),
     person("Florian", "Lecocq", role = c("aut", "cre"),
     email = "florian.lecocq@outlook.com"))
-Description: Piecewise Regression (PWR) for time series modeling and optimal segmentation 
-    by using dynamic programming. See also the packages 'RHLP' and 'HMMR'.
+Description: Piecewise Regression (PWR) for time series modeling and optimal 
+    segmentation by using dynamic programming. See also the packages 'RHLP' 
+    and 'HMMR'.
+URL: https://github.com/fchamroukhi/PWR_R
 License: GPL (>= 3)
 Depends: 
     R (>= 2.10)
