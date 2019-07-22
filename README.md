@@ -1,21 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Overview
+# Overview
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-A polynomial piecewise regression model for the optimal segmentation of
-a time series with regime changes. It uses dynamic programming for the
-segmentation and the LSE for the estimation of the regression
-parameters.
+**PWR**: Piecewise Regression (PWR) for time series (or structured
+longitudinal data) modeling and optimal segmentation by using optimized
+dynamic programming.
 
-## Installation
+# Installation
 
-You can install the development version of RHLP from
-[GitHub](https://github.com/) with:
+You can install the PWR package from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -38,19 +36,36 @@ Use the following command to display vignettes:
 browseVignettes("PWR")
 ```
 
-## Usage
+# Usage
 
 ``` r
 library(PWR)
+```
 
+``` r
+# Application to a toy data set
 data("toydataset")
 
 K <- 5 # Number of segments
-p <- 3 # Polynomial degree
+p <- 1 # Polynomial degree
 
 pwr <- fitPWRFisher(toydataset$x, toydataset$y, K, p)
 
 pwr$plot()
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-5-2.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-6-2.png" style="display: block; margin: auto;" />
+
+``` r
+# Application to a real data set
+data("realdataset")
+
+K <- 5 # Number of segments
+p <- 3 # Polynomial degree
+
+pwr <- fitPWRFisher(realdataset$x, realdataset$y2, K, p)
+
+pwr$plot()
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-7-2.png" style="display: block; margin: auto;" />
