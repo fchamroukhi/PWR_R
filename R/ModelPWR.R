@@ -7,10 +7,12 @@
 #' @field stat A [StatPWR][StatPWR] object. It contains all the statistics
 #'   associated to the PWR model.
 #' @seealso [ParamPWR], [StatPWR]
-#' @examples
-#' data(toydataset)
+#' @export
 #'
-#' pwr <- fitPWRFisher(toydataset$x, toydataset$y, K = 5, p = 1)
+#' @examples
+#' data(univtoydataset)
+#'
+#' pwr <- fitPWRFisher(univtoydataset$x, univtoydataset$y, K = 5, p = 1)
 #'
 #' # pwr is a ModelPWR object. It contains some methods such as 'summary' and 'plot'
 #' pwr$summary()
@@ -23,8 +25,6 @@
 #'
 #' # Parameters of the polynomial regressions:
 #' pwr$param$beta
-#'
-#' @export
 ModelPWR <- setRefClass(
   "ModelPWR",
   fields = list(

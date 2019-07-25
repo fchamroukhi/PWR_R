@@ -36,14 +36,13 @@ number of regimes thanks to the method \code{computeDynamicProgram} (method of
 the class \link{ParamPWR}).
 }
 \examples{
-data(toydataset)
+data(univtoydataset)
 
-pwr <- fitPWRFisher(toydataset$x, toydataset$y, K = 5, p = 1)
+pwr <- fitPWRFisher(univtoydataset$x, univtoydataset$y, K = 5, p = 1)
 
 pwr$summary()
 
 pwr$plot()
-
 }
 \seealso{
 \link{ModelPWR}, \link{ParamPWR}, \link{StatPWR}
