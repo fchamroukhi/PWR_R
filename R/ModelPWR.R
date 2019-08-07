@@ -10,9 +10,11 @@
 #' @export
 #'
 #' @examples
-#' data(univtoydataset)
+#' data(toydataset)
+#' x <- toydataset$x
+#' y <- toydataset$y
 #'
-#' pwr <- fitPWRFisher(univtoydataset$x, univtoydataset$y, K = 5, p = 1)
+#' pwr <- fitPWRFisher(X = x, Y = y, K = 5, p = 1)
 #'
 #' # pwr is a ModelPWR object. It contains some methods such as 'summary' and 'plot'
 #' pwr$summary()
@@ -126,12 +128,12 @@ ModelPWR <- setRefClass(
       }
 
       betas <- data.frame(param$beta, row.names = row.names)
-      colnames(betas) <- sapply(1:param$K, function(x) paste0("Beta(K = ", x, ")"))
+      colnames(betas) <- sapply(1:param$K, function(x) paste0("Beta(k = ", x, ")"))
       print(betas, digits = digits)
 
       cat("\nVariances:\n\n")
       sigma2 = data.frame(t(param$sigma2), row.names = NULL)
-      colnames(sigma2) = sapply(1:param$K, function(x) paste0("Sigma2(K = ", x, ")"))
+      colnames(sigma2) = sapply(1:param$K, function(x) paste0("Sigma2(k = ", x, ")"))
       print(sigma2, digits = digits, row.names = FALSE)
 
     }

@@ -54,11 +54,15 @@ library(PWR)
 ```{r, message = FALSE}
 # Application to a toy data set
 data("toydataset")
+x <- toydataset$x
+y <- toydataset$y
 
 K <- 5 # Number of segments
-p <- 1 # Polynomial degree
+p <- 3 # Polynomial degree
 
-pwr <- fitPWRFisher(toydataset$x, toydataset$y, K, p)
+pwr <- fitPWRFisher(X = x, Y = y, K, p)
+
+pwr$summary()
 
 pwr$plot()
 ```
@@ -66,11 +70,15 @@ pwr$plot()
 ```{r, message = FALSE}
 # Application to a real data set
 data("realdataset")
+x <- realdataset$x
+y <- realdataset$y2
 
 K <- 5 # Number of segments
 p <- 3 # Polynomial degree
 
-pwr <- fitPWRFisher(realdataset$x, realdataset$y2, K, p)
+pwr <- fitPWRFisher(X = x, Y = y, K, p)
+
+pwr$summary()
 
 pwr$plot()
 ```

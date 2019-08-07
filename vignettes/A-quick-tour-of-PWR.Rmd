@@ -46,6 +46,8 @@ See `help(package="PWR")` for further details and references provided by
 
 ```{r}
 data("toydataset")
+x <- toydataset$x
+y <- toydataset$y
 ```
 
 # Set up PWR model parameters
@@ -58,7 +60,7 @@ p <- 3 # Polynomial degree
 # Estimation
 
 ```{r}
-pwr <- fitPWRFisher(toydataset$x, toydataset$y, K, p)
+pwr <- fitPWRFisher(X = x, Y = y, K, p)
 ```
 
 # Summary
